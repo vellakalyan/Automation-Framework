@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 
 
 public class APIs {
+//REST Assured, which is a Java library for testing RESTful APIs
 
     public static Response restGetCall(String url) {
         Response response = null;
@@ -17,7 +18,18 @@ public class APIs {
         return response;
     }
 
-    public Response restPostCall(String url, String requestBody) {
+    // Overloaded method to handle GET request with query parameters
+    public static Response restGetCall(String url, String paramName, String paramValue) {
+        Response response = null;
+        RestAssured.baseURI = url;
+        RequestSpecification request = RestAssured.given();
+        request.queryParam(paramName, paramValue);
+        response = request.get();
+
+        return response;
+    }
+
+    public static Response restPostCall(String url, String requestBody) {
         Response response = null;
         RestAssured.baseURI = url;
         RequestSpecification request = RestAssured.given();
@@ -26,28 +38,35 @@ public class APIs {
         return response;
     }
 
-    public Response restPutCall(String url, String requestBody) {
+    public static Response restPutCall(String url, String requestBody, String authorization) {
         Response response = null;
         RestAssured.baseURI = url;
         RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        request.header("Accept", "application/json");
+        request.header("Authorization", authorization);
         response = request.body(requestBody).contentType(ContentType.JSON).put();
 
         return response;
     }
 
-    public Response restDeleteCall(String url) {
+    public static Response restDeleteCall(String url, String authorization) {
         Response response = null;
         RestAssured.baseURI = url;
         RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", authorization);
         response = request.delete();
 
         return response;
     }
 
-    public Response restPatchCall(String url, String requestBody) {
+    public static Response restPatchCall(String url, String requestBody, String authorization) {
         Response response = null;
         RestAssured.baseURI = url;
         RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+        request.header("Authorization", authorization);
         response = request.body(requestBody).contentType(ContentType.JSON).patch();
 
         return response;
