@@ -1,4 +1,4 @@
-Feature:BackPack_Online_Order
+Feature:ParaBank Registration, Login, AccountOverview, TransferFunds, ApplyLoan
 
   @Registration
   Scenario Outline: ParaBank Account Registration

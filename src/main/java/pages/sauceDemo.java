@@ -11,6 +11,7 @@ public class sauceDemo {
 
     public static void launchSauceDemo() {
         getDriver().get(Config_Reader.properties("SauceDemo"));
+        getDriver().manage().window().maximize();
     }
 
     public static void Login() {

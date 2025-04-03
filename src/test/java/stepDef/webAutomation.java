@@ -20,7 +20,7 @@ public class webAutomation {
         sauceDemo.launchSauceDemo();
     }
 
-    @And("User Login using (.*) and (.*)")
+    @And("User Logins using (.*) and (.*)")
     public void login(String Username, String Password) throws Exception {
         sauceDemo.Login();
 
